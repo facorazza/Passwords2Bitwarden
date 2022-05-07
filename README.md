@@ -25,7 +25,7 @@ Enter your Nextcloud instance go to `Passwords > More > Backup & Restore`. Selec
 ## Conversion
 To convert the zip archive call the script like so:
 ```
-python main.py /Downloads/.../path/to/zip/archive.zip
+python main.py ~/Downloads/.../path/to/zip/archive.zip
 ```
 
 The coverted file will be stored inside the folder repo under the name `dump.json`.
