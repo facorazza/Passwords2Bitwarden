@@ -74,7 +74,7 @@ def cli(zip_filepath):
     with open("dump.json", "w") as f:
         f.write(json.dumps(dump))
     
-    print("Done")
+    print("Done! Upload dump.json to Bitwarden or Vaultwarden.")
 
 
 if __name__ == "__main__":
