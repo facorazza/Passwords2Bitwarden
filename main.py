@@ -38,15 +38,33 @@ def cli(zip_filepath):
     dump["folders"] = list()
     dump["items"] = list()
     
-    
     with open("Folders.csv", "r") as f:
+        folder_structure = dict()
+        folders = list()
         reader = csv.DictReader(f)
         for row in reader:
-            dump["folders"].append({
-                "id": row["Id"],
-                "name": row["Label"]
-            })
-    
+            if row["ParentLabel"] == "Home":
+                folder_structure[row["Id"]] = row["Label"]
+                dump["folders"].append({"id": row["Id"], "name": row["Label"]})
+            elif row["ParentId"] in folder_structure:
+                path = row["ParentLabel"] + "/" + row["Label"]
+                folder_structure[row["Id"]] = path
+                dump["folders"].append({"id": row["Id"], "name": path})
+            else:
+                folders.append({
+                    "parent_id": row["ParentId"],
+                    "id": row["Id"],
+                    "name": row["Label"]
+                })
+        
+        while len(folders):
+            for index, folder in enumerate(folders):
+                if folder["parent_id"] in folder_structure:
+                    path = folder_structure[folder["parent_id"]] + "/" + folder["name"]
+                    folder_structure[folder["id"]] = path
+                    dump["folders"].append({"id": folder["id"], "name": path})
+                    folders.pop(index)
+        
     with open("Passwords.csv", "r") as f:
         reader = csv.DictReader(f)
         for row in reader:
