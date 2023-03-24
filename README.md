@@ -21,6 +21,8 @@ python -m pip install -r requirements.txt
 
 ### Nextcloud Passwords
 
+> :warning: Before exporting your passwords, you must change your Nextcloud language to English. Got to `Settings > Personal info > Language`. You can revert the change once downloaded the archive.
+
 Enter your Nextcloud instance go to `Passwords > More > Backup & Restore`. Select `Backup or export` and the fill the following fields:
 
 1. Choose Format: `Predefined CSV`
