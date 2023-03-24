@@ -23,10 +23,10 @@ python -m pip install -r requirements.txt
 
 > :warning: Before exporting your passwords, you must change your Nextcloud language to English. Got to `Settings > Personal info > Language`. You can revert the change once downloaded the archive.
 
-Enter your Nextcloud instance go to `Passwords > More > Backup & Restore`. Select `Backup or export` and the fill the following fields:
+Enter your Nextcloud instance go to `Passwords > More > Backup & Restore`. Select `Backup or export` and then fill the following fields:
 
 1. Choose Format: `Predefined CSV`
-2. Select Options: Select at least Passwords and Folders
+2. Select Options: Select at least `Passwords` and `Folders`
 3. Run Export
 4. Download CSV
 
@@ -42,4 +42,4 @@ The converted file will be stored inside the folder repo under the name `dump.js
 
 ### Bitwarden (Vaultwarden) Import
 
-Go to your Bitwarden or Vaultwarden instance `Tools > Import Data`. Select `Bitwarden (json)`. Upload the `dump.json` and click on `Import Data`.
+Go to your Bitwarden or Vaultwarden instance `Tools > Import Data`. Select `Bitwarden (json)`. Upload the `dump.json` file and click on `Import Data`.
