@@ -54,7 +54,7 @@ def cli(zip_filepath):
                 "type": 1,
                 "name": row["Label"],
                 "notes": row["Notes"],
-                "favorite": True if row["Favorite"] == "true" else False,
+                "favorite": True if "Favorite" in row and row["Favorite"] == "true" else False,
                 "login": {
                     "username": row["Username"],
                     "password": row["Password"],
