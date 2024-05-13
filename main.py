@@ -9,7 +9,6 @@ from utils import parse_custom_fields
 @click.command()
 @click.argument("zip_filepath", type=click.Path(exists=True))
 def cli(zip_filepath):
-
     with zipfile.ZipFile(zip_filepath, "r") as zf:
         zf.extractall()
 
@@ -17,9 +16,10 @@ def cli(zip_filepath):
     dump["folders"] = []
     dump["items"] = []
 
-    with open("Folders.csv", "r") as f:
+    with open("Folders.csv", "r", encoding="utf-8") as f:
         folder_structure = {}
         folders = []
+
         reader = csv.DictReader(f)
         for row in reader:
             if row["ParentLabel"] == "Home":
@@ -44,7 +44,7 @@ def cli(zip_filepath):
                     dump["folders"].append({"id": folder["id"], "name": path})
                     folders.pop(index)
 
-    with open("Passwords.csv", "r") as f:
+    with open("Passwords.csv", "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             dump["items"].append({
@@ -68,7 +68,7 @@ def cli(zip_filepath):
                 "collectionIds": [],
             })
 
-    with open("dump.json", "w") as f:
+    with open("dump.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(dump))
 
     print("Done! Upload dump.json to Bitwarden or Vaultwarden.")
