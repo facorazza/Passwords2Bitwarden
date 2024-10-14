@@ -49,3 +49,15 @@ The converted file will be stored inside the folder repo under the name `dump.js
 ### Bitwarden (Vaultwarden) Import
 
 Go to your Bitwarden or Vaultwarden instance `Tools > Import Data`. Select `Bitwarden (json)`. Upload the `dump.json` file and click on `Import Data`.
+
+
+
+# Docker
+
+`docker build -t passwords2bitwarden .`
+
+Rename the "predefined csv" downloaded zip to `archive.zip`
+
+`docker run --rm -v ./archive.zip:/app/archive.zip -v ./output:/app/output passwords2bitwarden /app/archive.zip /app/output`
+
+#check `./output` dir and import in bitwarden using bitwarden-json format.
