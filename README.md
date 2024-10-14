@@ -2,6 +2,12 @@
 
 Vault converter from Nextcloud Passwords to Bitwarden or Vaultwarden.
 
+## Requirements
+
+The script requires at least Python 3.10.
+
+If you're using an older version, you can work around it by using the code mentioned [here](https://github.com/facorazza/Passwords2Bitwarden/issues/8) even though I have not tested it. 
+
 ## How to...
 
 Clone the repo locally:
