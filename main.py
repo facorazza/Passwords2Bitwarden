@@ -1,6 +1,7 @@
 import csv
 import json
 import zipfile
+import os
 
 import click
 
@@ -8,7 +9,9 @@ from utils import parse_custom_fields
 
 @click.command()
 @click.argument("zip_filepath", type=click.Path(exists=True))
-def cli(zip_filepath):
+@click.argument("output_dir", type=click.Path())  # Add an argument for output directory
+def cli(zip_filepath, output_dir):
+    # Extract the ZIP archive
     with zipfile.ZipFile(zip_filepath, "r") as zf:
         zf.extractall()
 
@@ -16,6 +19,7 @@ def cli(zip_filepath):
     dump["folders"] = []
     dump["items"] = []
 
+    # Process Folders.csv
     with open("Folders.csv", "r", encoding="utf-8") as f:
         folder_structure = {}
         folders = []
@@ -44,6 +48,7 @@ def cli(zip_filepath):
                     dump["folders"].append({"id": folder["id"], "name": path})
                     folders.pop(index)
 
+    # Process Passwords.csv
     with open("Passwords.csv", "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -68,11 +73,18 @@ def cli(zip_filepath):
                 "collectionIds": [],
             })
 
-    with open("dump.json", "w", encoding="utf-8") as f:
-        f.write(json.dumps(dump))
+    # Ensure output directory exists
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-    print("Done! Upload dump.json to Bitwarden or Vaultwarden.")
+    # Save to the output directory
+    output_file = os.path.join(output_dir, "dump.json")
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(json.dumps(dump, indent=4))
+
+    print(f"Done! Upload {output_file} to Bitwarden or Vaultwarden.")
 
 
 if __name__ == "__main__":
     cli()
+
