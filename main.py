@@ -9,7 +9,7 @@ from utils import parse_custom_fields
 
 @click.command()
 @click.argument("zip_filepath", type=click.Path(exists=True))
-@click.argument("output_dir", type=click.Path())  # Add an argument for output directory
+@click.argument("output_dir", type=click.Path(exists=False), default=".")
 def cli(zip_filepath, output_dir):
     # Extract the ZIP archive
     with zipfile.ZipFile(zip_filepath, "r") as zf:
@@ -87,4 +87,3 @@ def cli(zip_filepath, output_dir):
 
 if __name__ == "__main__":
     cli()
-
