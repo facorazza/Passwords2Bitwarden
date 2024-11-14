@@ -11,7 +11,7 @@ def parse_custom_fields(fields):
             case "secret":
                 field_type = 1 # Hidden field
             case _:
-                field_type = 0 # Default to text field
+                field_type = 0 # Defaults to text field
 
         custom_fields.append({
             "name": field[0],
