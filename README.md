@@ -34,7 +34,7 @@ The latter method requires you to install a few Python dependencies, but it's be
 > You can use the automatically built container image on GitHub or you can build your own using the Dockerfile contained in the repository.
 
 ```shell
-docker run --name passwords2bitwarden --rm -v ./<path-to-archive>/<archive-name>.zip:/app/archive.zip -v ./passwords2bitwarden:/app/output facorazza/passwords2bitwarden
+docker run --name passwords2bitwarden --rm -v ./<path-to-archive>/<archive-name>.zip:/app/archive.zip -v ./passwords2bitwarden:/app/output ghcr.io/facorazza/passwords2bitwarden
 ```
 
 You'll find the exported dump under `passwords2bitwarden`.
